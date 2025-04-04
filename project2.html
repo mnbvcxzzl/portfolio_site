@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Проект №2: Архивы кошачьей магии</title>
+
+  <style>
+	  @font-face {
+      font-family: 'Involve-Regular';
+      src: url('assets/Involve-Regular.ttf')
+	}
+	  @font-face {
+      font-family: 'Involve-SemiBold';
+      src: url('assets/Involve-SemiBold.ttf')
+	}
+	  @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+
+    /* Сброс базовых стилей */
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+	html{
+		scroll-behavior: smooth;
+	}
+    body {
+      background-color: #101010; /* Тёмный фон */
+      color: #FFFFFF;            /* Белый текст */
+      font-family: 'Involve-Regular';
+      line-height: 1.5;
+		
+    }
+
+    /* Контейнер для всей страницы (задаём макс. ширину) */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0px;
+    }
+
+	.back-button {
+	  width: 1200px;
+	  margin: 0 auto;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start; /* выравнивание по левому краю */
+	  gap: 0px;
+	}
+
+	.back-button a {
+	  text-decoration: none; /* Убираем подчеркивание */
+	}
+
+	.back-button p {
+	  margin-bottom: 0;
+	  margin-top: 35px;
+	  font-size: 16px;
+	  font-weight: 500;
+	  padding-left: 55px;
+	  color: #666;
+	  transition: opacity 0.3s;
+	}
+
+	.back-button a p:hover {
+	  opacity: 0.7;
+	}
+
+	.back-button a img {
+	  width: 200px;
+	  height: auto;
+	  cursor: pointer;
+	  transition: opacity 0.3s;
+	}
+
+	.back-button a img:hover {
+	  opacity: 0.7;
+	}
+
+    /* --------------------------------
+       СЕКЦИЯ 1: Верхний логотип + фон + навигация
+       -------------------------------- */
+    .hero {
+		position: relative;
+		width: 100%;
+		height: 600px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		background-color: #000; /* Фолбэк если изображения не загрузятся */
+	  }
+
+	  /* Размытый задний фон */
+	  .hero-bg-blur {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: blur(10px) brightness(0.6);
+		/* Убрали transform: scale() и добавили растяжение */
+		width: calc(100% + 20px);
+		height: calc(100% + 20px);
+		left: -10px;
+		top: -10px;
+		z-index: 1;
+	  }
+
+	  /* Основное изображение по центру */
+	  .hero-bg-main {
+		position: relative;
+		width: 1920px;
+		object-fit: fill;
+		z-index: 2;
+		box-shadow: 0 0 30px rgba(0,0,0,0.7);
+		}
+
+	  .intro-section {
+      display: flex;
+      flex-wrap: wrap; /* Чтобы на мобильных блоки переносились */
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px auto;
+		  padding-top: 50px;
+		width: 1100px;
+    }
+
+    /*  описание  */
+    .intro-text {
+      flex: 1; 
+      margin: 40px auto;
+      max-width: 1083px;
+    }
+    .intro-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+		font-family: "Dela Gothic One", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+		color: #BEBACC;
+    }
+    .intro-text p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px; /* Расстояние между блоками */
+      margin-bottom: 30px;
+    }
+    .info-block {
+      flex: 1;
+      border-radius: 8px;
+      width: 1083px;
+		font-size: 20px;
+		margin: 0 auto;
+    }
+    .info-block h3 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 60px;
+      position: relative;
+		font-family: "Dela Gothic One", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+		color: #BEBACC;
+    }
+    .info-block h3::before {
+  		content: "";
+  		display: inline-block;
+		  width: 30px;
+		  height: 30px;
+		  background: url("assets/star1.svg") no-repeat center center;
+		  background-size: contain;
+		  margin-right: 10px;
+		  vertical-align: middle;
+		position: relative;
+  		top: -3px;
+}
+
+    /* Пример иконок в навыках / софте */
+    .skills-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 20px;
+	  font-size: 24px;
+    }
+    .skills-icons img {
+      width: 70px; /* Размер иконок */
+      height: 70px;
+      object-fit: contain;
+	  margin-right: 20px;
+	  margin-left: 60px;
+      /* Замените src на реальный путь к каждой иконке (Ai, Ps, Blender, и т.д.) */
+    }
+	  .skills-icons p {
+        vertical-align: middle;
+		position: relative;
+  		top: 15px;
+    }
+	 .line2 {
+	  border: none;                /* Убираем стандартную границу hr */
+	  border-top: 1px solid #fff;  /* Тонкая белая линия */
+	  margin: 90px auto;               /* Отступ между линией и навигацией */
+	  width: 500px;
+	}
+
+	  /* НАВИГАЦИЯ */
+	  .project-navigation {
+		width: 1200px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+		margin-top: 180px;
+		margin-bottom: 180px;
+	}
+
+	.prev-project, .next-project {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		font-size: 16px;
+		color: rgba(128, 128, 128, 1);
+	}
+	 .prev-project a, .next-project a {
+		text-decoration: none;
+	}
+	.nav-button {
+		width: 135px;
+		height: 55px;
+		background: #BEBACC;
+		border: none;
+		border-radius: 5px;
+		font-size: 40px; /* Уменьшенный размер для лучшего пропорционального отображения */
+		color: #101010;
+		cursor: pointer;
+		transition: background 0.3s ease;
+		display: flex;          /* Включаем flex-контейнер */
+		align-items: center;    /* Вертикальное выравнивание по центру */
+		justify-content: center;/* Горизонтальное выравнивание по центру */
+		padding-bottom: 5px;       /* Смещаем текст немного выше */
+		box-sizing: border-box; /* Учитываем padding в общей ширине/высоте */
+		text-align: center;     /* Центрируем текст (дополнительная страховка) */
+		line-height: 1.2;       /* Оптимальный межстрочный интервал */
+	}
+
+	.nav-button:hover {
+		background-color: rgba(128, 128, 128, 0.5); /* Темнее при наведении */
+	}
+	  .gallery-block img {
+		  margin: 30px 0px;
+	  }
+	  .image-container {
+		display: flex;
+		justify-content: center; /* Выравнивание по центру */
+		gap: 0px; /* Отступ между картинками */
+	}
+
+    .model-container {
+        width: 600px;
+		height: 800px;
+        margin: 0 auto;
+    }
+    
+    model-viewer {
+        width: 100%;
+        height: 800px;
+        background-color: #101010;
+        display: block;
+        overflow: hidden;
+		
+    }
+	  
+	  #scene {
+			display: block; /* Убираем лишние отступы */
+			width: 1200px;
+			height: 800px; /* Можно изменить под нужный размер */
+			margin: 60px auto; /* Центрируем по горизонтали */
+			background-color: transparent; /* Убираем фон, если нужно */
+		}
+	  
+	  /* --------------------------------
+       ФУТЕР (нижняя надпись «PORTFOLIO» + соц.сети)
+       -------------------------------- */
+		footer {
+		  position: relative;
+		  text-align: center;
+		  padding: 40px 20px;
+			background: #060606;
+		}
+		  /* Лого «PORTFOLIO» */
+		  .footer-logo {
+		  position: relative;
+		  z-index: 2;
+		  width: 700px;
+		  height: auto;
+		  padding-top: 60px;
+		  opacity: 0.5;
+		}
+		.footer-copy {
+		  font-size: 16px;
+		  color: #888;
+		}
+
+		/* Адаптивная стилизация (примеры) */
+		@media (max-width: 768px) {
+		  .intro-section {
+			flex-direction: column;
+			align-items: center;
+		  }
+		  .intro-text {
+			margin-left: 0;
+			margin-top: 20px;
+			text-align: center;
+		  }
+		  .info-section {
+			flex-direction: column;
+		  }
+		}
+		  /* Соц сети */
+		.social-icons {
+		  display: flex;
+		  justify-content: center; /* Центрируем иконки */
+		  gap: 34px; /* Расстояние между иконками */
+		  margin: 80px 0px;
+		}
+
+		.social-icons a {
+		  display: inline-block;
+		  width: 50px; /* Размер иконок */
+		  height: 50px;
+		}
+
+		.social-icons img {
+		  width: 100%;
+		  height: auto;
+		  transition: transform 0.3s ease; /* Эффект при наведении */
+		}
+
+		.social-icons a:hover img {
+		  transform: scale(1.2); /* Увеличение иконки при наведении */
+		}
+ 	</style>
+</head>
+	
+<body>
+
+  <!-- Секция 1: Верхний блок с фоном ---------------------------------------->
+
+<section class="hero">
+  <img src="assets/project2/bg2.png" class="hero-bg-blur" alt="">
+  <img src="assets/project2/bg2.png" class="hero-bg-main" alt="">
+</section>
+	
+	<div class="container">
+
+	<div class="back-button">
+	  <a href="index.html">
+		<p>главная страница</p>
+	  </a>
+	  <a href="index.html">
+		<img src="assets/Arrow2.svg" alt="Назад">
+	  </a>
+	</div>
+
+		
+    <!-- Секция 2: Описание проекта ------------------------------------------>
+    <section class="intro-section" id="about" style="padding-top: 10px;">
+      
+      <div class="intro-text">
+        <h2>"Лесная ферма котика"</h2>
+        <p>Год реализации: <strong>2024</strong></p>
+        <p>Этот проект представляет собой яркую и добрую сцену деревенской жизни, где главным героем выступает антропоморфный котик-фермер в комбинезоне. Сцена выполнена в мультяшной стилистике и наполнена элементами уюта и природы: аккуратный домик с синей черепичной крышей, грядки с молодыми ростками и спелыми колосьями, деревянные бочки, а также окружение из стилизованных деревьев.</p>
+        <p>Все объекты выполнены вручную в стиле low-poly с упором на простые, но выразительные формы и насыщенные цвета. Композиция сцены тщательно продумана: симметрия в расположении объектов и плавные линии формируют ощущение гармонии и спокойствия. Освещение мягкое и равномерное, подчёркивающее сказочную атмосферу и подчёркивающее ключевые элементы сцены.</p>
+		<p>Проект был создан в рамках практики по разработке стилизованных игровых окружений. Он демонстрирует навыки в моделировании, текстурировании, работе с цветом и построении композиции. Такая сцена может быть использована как часть фермерской игры, анимационного проекта или интерактивной сказки.</p>
+      </div>
+    </section>
+
+      <div class="info-block">
+		  <h3>ИСПОЛЬЗУЕМЫЙ СОФТ</h3>
+        <!-- Иконки софта  -->
+        <div class="skills-icons">
+          <img src="assets/project1/icon_pr1.png" alt="Icon 1" style="width: 80px;">
+          <p>Blender</p>
+        </div>
+		  <div class="skills-icons">
+          <img src="assets/project1/icon_pr2.png" alt="Icon 2" style="width: 80px;">
+          <p>Adobe Photoshop</p>
+        </div>
+      </div>
+	
+	 <hr class="line2">
+	
+	<div class="gallery-block">
+		 <img src="assets/project2/farm1.png" alt="Photo 1" style="width: 1200px; margin-top: 0px;">
+		<img src="assets/project2/farm2.png" alt="Photo 2" style="width: 1200px;">
+		<div class="image-container">
+<!--
+			<div class="model-container">
+				<model-viewer src="assets/project2/cats2.glb"   
+							  alt="3D Model"
+							  id="my-model"
+							  environment-image="neutral"
+							camera-orbit="-90deg 90deg 115m"
+							  disable-zoom 
+								
+							  field-of-view="20deg"
+							  camera-controls
+							  background-color="transparent"
+							  alpha-mode="BLEND">
+				</model-viewer>
+			</div>
+-->
+			<img src="assets/project2/cat31.png" alt="Photo 4" style="width: 600px; ">
+			<img src="assets/project2/cat41.png" alt="Photo 4" style="width: 600px; ">
+		</div>
+	</div>
+	
+	<hr class="line2">
+	
+	<div class="info-block">
+		  <h3 style="margin-bottom: 30px;">РЕНДЕРЫ</h3>
+	</div>
+	<div class="gallery-block">
+		<img src="assets/project2/farm4.png" alt="Photo 5" style="width: 1200px; margin-bottom: 10px;">
+		<img src="assets/project2/farm5.png" alt="Photo 6" style="width: 1200px;">
+	</div>
+		
+<!-----------------------------  НАВИГАЦИЯ   ------------------------------->
+	
+	<div class="project-navigation">
+    <div class="prev-project">
+        <span style="text-align: right;">предыдущий <br>проект</span><a href="project1.html">
+        <button class="nav-button">
+            &#8592;
+        </button></a>
+    </div>
+    <div class="next-project"><a href="project3.html">
+        <button class="nav-button">
+            &#8594;
+        </button></a>
+        <span>следующий <br>проект</span>
+    </div>
+</div>
+</div>
+	
+	<!-- Футер -->
+  <footer>
+	<img 
+		src="assets/logo.png" 
+		alt="Логотип PORTFOLIO" 
+		class="footer-logo"
+  	>
+     <!-- Соцсети -->
+	  <div class="social-icons" style="margin: 40px 0px; opacity: 50%;">
+		<a href="https://t.me/guaiwuxx" target="_blank">
+		  <img src="assets/Telegram, Negative.svg" alt="Telegram">
+		</a>
+		<a href="" title="+7 (960) 086-38-33" target="_blank">
+		  <img src="assets/WhatsApp, Negative.svg" alt="WhatsApp">
+		</a>
+		<a href="https://vk.com/mnbvcxzzl" target="_blank">
+		  <img src="assets/VK, Negative.svg" alt="VK">
+		</a>
+		<a href="" title="guaiwu_t" target="_blank">
+		  <img src="assets/Instagram, Negative.svg" alt="Instagram">
+		</a>
+		<a href="" title="guaiwu_" target="_blank">
+		  <img src="assets/Discord, Negative.svg" alt="Discord">
+		</a>
+	  </div>
+
+    <div class="footer-copy">
+      © Муравейник Татьяна, 2025 год
+    </div>
+  </footer>
